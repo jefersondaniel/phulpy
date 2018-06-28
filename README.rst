@@ -30,12 +30,12 @@ Create your ``phulpyfile.py`` (the configuration file, that describes all your t
 
 
    @task
-   def default():
-       print("Hello world")
+   def default(phulpy):
+       phulpy.start(['mytask'])
 
 
    @task
-   def mytask():
+   def mytask(phulpy):
        print("You called my task")
 
 Run:
