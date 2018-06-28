@@ -1,6 +1,8 @@
+import sys
+import os
 import argparse
 from glob import glob
-from phulpy import run_tasks
+from .phulpy import start
 
 
 def __main__():
@@ -11,10 +13,16 @@ def __main__():
     try:
         if not len(files):
             raise Exception('There\'s no phulpyfile.py present.')
-        exec(open(files[0], 'r').read())
-        run_tasks(args.tasks)
-    except Exception as exception:
-        print(exception.message)
+        path_backup = sys.path[:]
+        sys.path.append(os.getcwd())
+        __import__(files[0].split('.py')[0], globals(), locals(), [], 0)
+        sys.path = path_backup
+        start(args.tasks)
+    except Exception as e:
+        if hasattr(e, 'message'):
+            print(e.message)
+        else:
+            print(str(e))
         exit(1)
 
 
