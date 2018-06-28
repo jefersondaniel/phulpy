@@ -2,7 +2,9 @@ import sys
 import os
 import argparse
 from glob import glob
+from datetime import datetime
 from .phulpy import start
+from .output import Output
 
 
 def __main__():
@@ -19,10 +21,22 @@ def __main__():
         sys.path = path_backup
         start(args.tasks)
     except Exception as e:
+        error_message = ""
         if hasattr(e, 'message'):
-            print(e.message)
+            error_message = e.message
         else:
-            print(str(e))
+            error_message = str(e)
+
+        Output.err(
+            "[{}] {}".format(
+                Output.colorize(
+                    datetime.now().strftime('%H:%M:%S'),
+                    'light_gray'
+                ),
+                Output.colorize(error_message, 'light_red')
+            )
+        )
+
         exit(1)
 
 
