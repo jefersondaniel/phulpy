@@ -26,7 +26,7 @@ Create your ``phulpyfile.py`` (the configuration file, that describes all your t
 
 .. code:: python
 
-   from phulpy import task
+   from phulpy import task, Output
 
 
    @task
@@ -36,7 +36,9 @@ Create your ``phulpyfile.py`` (the configuration file, that describes all your t
 
    @task
    def mytask(phulpy):
-       print("You called my task")
+       Output.out(
+           Output.colorize("You called my task", "green")
+       )
 
 Run:
 ''''
