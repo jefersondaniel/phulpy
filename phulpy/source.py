@@ -1,4 +1,4 @@
-from file import File
+from .file import File
 from glob import glob
 import os
 import fnmatch

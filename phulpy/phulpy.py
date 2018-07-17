@@ -1,10 +1,10 @@
 import os
-from output import Output
 from datetime import datetime
 from time import time
-from source import Source
-from helpers import mkdir
 from multiprocessing.dummy import Pool as ThreadPool
+from .output import Output
+from .source import Source
+from .helpers import mkdir
 
 
 class Phulpy:
