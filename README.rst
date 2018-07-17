@@ -1,6 +1,8 @@
 Phulpy
 ======
 
+|Build Status| |Version|
+
 The task manager for python
 
 Why
@@ -71,3 +73,15 @@ Run the phulpy over the ``phulpyfile.py`` directory
    $ phulpy # Will run the `default` task
    $ phulpy mytask # Will run the `mytask` task
    $ phulpy --threads 4 mytask1 mytask2  # Will run the tasks simultaneously
+
+By:
+''''
+@jefersondaniel
+@reisraff
+
+
+.. |Build Status| image:: https://travis-ci.org/jefersondaniel/phulpy.svg
+   :target: https://travis-ci.org/jefersondaniel/phulpy
+
+.. |Version| image:: https://badge.fury.io/py/phulpy.svg
+   :target: https://pypi.python.org/pypi/phulpy
