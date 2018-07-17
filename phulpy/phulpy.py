@@ -4,6 +4,7 @@ from datetime import datetime
 from time import time
 from source import Source
 from helpers import mkdir
+from multiprocessing.dummy import Pool as ThreadPool
 
 
 class Phulpy:
@@ -93,5 +94,6 @@ def task(fn):
     return fn
 
 
-def start(tasks):
-    phulpy.start(tasks)
+def start(tasks, threads=1):
+    pool = ThreadPool(threads)
+    pool.map(lambda task: phulpy.start([task]), tasks)

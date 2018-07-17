@@ -1,4 +1,5 @@
 from phulpy import task  # noqa
 from output import Output  # noqa
+from version import version
 
-__version__ = '1.0.4'
+__version__ = version
