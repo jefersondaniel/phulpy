@@ -9,7 +9,7 @@ from version import version
 
 
 def show_version():
-    print version
+    Output.out(Output.colorize(version, 'green'))
 
 
 def __main__():
