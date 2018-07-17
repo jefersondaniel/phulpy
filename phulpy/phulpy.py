@@ -69,8 +69,13 @@ class Phulpy:
                     )
                 )
 
+                task_fn = self.__tasks__[task]
                 start = time()
-                self.__tasks__[task](self)
+
+                if task_fn.__code__.co_argcount:
+                    task_fn(self)
+                else:
+                    task_fn()
 
                 Output.out(
                     "[{}] Starting task {} has finished in {} seconds".format(

@@ -5,3 +5,4 @@ dist/
 build/
 phulpy.egg-info/
 var/
+phulpyfile.py
