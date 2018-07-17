@@ -70,3 +70,4 @@ Run the phulpy over the ``phulpyfile.py`` directory
    $ phulpy --help
    $ phulpy # Will run the `default` task
    $ phulpy mytask # Will run the `mytask` task
+   $ phulpy --threads 4 mytask1 mytask2  # Will run the tasks simultaneously
