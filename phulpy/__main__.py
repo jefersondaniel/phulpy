@@ -21,11 +21,7 @@ def __main__():
         sys.path = path_backup
         start(args.tasks)
     except Exception as e:
-        error_message = ""
-        if hasattr(e, 'message'):
-            error_message = e.message
-        else:
-            error_message = str(e)
+        error_message = str(e)
 
         Output.err(
             "[{}] {}".format(
