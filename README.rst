@@ -76,9 +76,12 @@ Run the phulpy over the ``phulpyfile.py`` directory
 
 By:
 ''''
-@jefersondaniel
-@reisraff
 
+
+`@jefersondaniel <https://github.com/jefersondaniel>`
+
+
+`@reisraff <https://github.com/reisraff>`
 
 .. |Build Status| image:: https://travis-ci.org/jefersondaniel/phulpy.svg
    :target: https://travis-ci.org/jefersondaniel/phulpy
