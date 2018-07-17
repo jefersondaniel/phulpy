@@ -1,7 +1,7 @@
 Phulpy
 ======
 
-|Build Status| |Version|
+|Build Status| |Version| |Pyversions|
 
 The task manager for python
 
@@ -87,4 +87,7 @@ By:
    :target: https://travis-ci.org/jefersondaniel/phulpy
 
 .. |Version| image:: https://badge.fury.io/py/phulpy.svg
+   :target: https://pypi.python.org/pypi/phulpy
+
+.. |Pyversions| image:: https://img.shields.io/pypi/pyversions/phulpy.svg
    :target: https://pypi.python.org/pypi/phulpy
