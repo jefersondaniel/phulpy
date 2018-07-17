@@ -28,7 +28,6 @@ Create your ``phulpyfile.py`` (the configuration file, that describes all your t
 
    from phulpy import task, Output
 
-
    @task
    def default(phulpy):
        def print_file(file):
@@ -55,6 +54,11 @@ Create your ``phulpyfile.py`` (the configuration file, that describes all your t
    def clean(phulpy):
        phulpy.src(['./var/*']) \
            .pipe(phulpy.clean())
+
+
+   @task
+   def do_nothing():
+       pass
 
 Run:
 ''''
