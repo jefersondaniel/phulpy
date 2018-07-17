@@ -1,4 +1,4 @@
-from .output import Output
+from output import Output
 from datetime import datetime
 from time import time
 
