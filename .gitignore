@@ -1,8 +1,11 @@
 *.pyc
 *.pyo
+.coverage
+.coverage.*
+coverage.xml
 venv/
 dist/
 build/
 phulpy.egg-info/
 var/
-phulpyfile.py
+.pytest_cache/

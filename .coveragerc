@@ -1,0 +1,6 @@
+[run]
+branch = False
+omit=
+    phulpy/__main__.py
+    phulpy/__init__.py
+    phulpy/version.py
