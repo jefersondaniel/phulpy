@@ -2,14 +2,20 @@ import sys
 import pytest
 from phulpy.file import File
 
+
 @pytest.fixture
 def open_mock(mocker):
     builtins = 'builtins' if sys.version_info >= (3,) else 'phulpy.file'
-    mocker.patch('{}.open'.format(builtins), mocker.mock_open(read_data='lala'))
+    mocker.patch(
+        '{}.open'.format(builtins),
+        mocker.mock_open(read_data='lala')
+    )
+
 
 @pytest.fixture
 def file(mocker, open_mock):
     return File('/tmp/lala', read=False)
+
 
 class TestFile(object):
     def test_init(self, open_mock):
@@ -35,4 +41,3 @@ class TestFile(object):
         assert 'lala' == file.name
         file.name = 'lele'
         assert 'lele' == file.name
-

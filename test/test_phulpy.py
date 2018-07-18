@@ -6,11 +6,15 @@ from phulpy.phulpy import phulpy, task, start, TaskNotFound
 
 @pytest.fixture(autouse=True)
 def default_fixture(mocker):
-    builtins = 'builtins' if sys.version_info >= (3,) else 'phulpy.source'
-    mocker.patch('{}.open'.format(builtins), mocker.mock_open(read_data='lala'))
+    builtins = 'builtins' if sys.version_info >= (3,) else 'phulpy.phulpy'
+    mocker.patch(
+        '{}.open'.format(builtins),
+        mocker.mock_open(read_data='lala')
+    )
     mocker.patch('glob.glob', Mock(return_value=['/a/a', '/a/b']))
     mocker.patch('os.walk', Mock(return_value=[('/a/a', ['b'], ['a'])]))
     mocker.patch('os.unlink', Mock())
+    mocker.patch('os.makedirs', Mock())
     mocker.patch('os.path.isfile', Mock(return_value=True))
     mocker.patch('os.path.dirname', Mock(return_value='b'))
     mocker.patch('os.path.basename', Mock(return_value='b'))
@@ -22,7 +26,6 @@ class TestPhulp(object):
         def lala():
             pass
         assert 'lala' in phulpy.tasks
-
 
     def test_src(self, mocker):
         source_mock = Mock()

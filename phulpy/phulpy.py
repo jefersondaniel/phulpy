@@ -11,7 +11,7 @@ class TaskNotFound(Exception):
     pass
 
 
-class Phulpy:
+class Phulpy(object):
     __tasks = {}
 
     def task(self, fn):

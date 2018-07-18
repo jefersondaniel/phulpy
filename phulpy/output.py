@@ -1,7 +1,7 @@
 import sys
 
 
-class Output:
+class Output(object):
     colors = {
         'default_foreground': 39,
         'black': 30,

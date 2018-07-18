@@ -4,7 +4,7 @@ import os
 import fnmatch
 
 
-class Source:
+class Source(object):
     def __init__(self, glob_patterns, read):
         self.__files = []
 

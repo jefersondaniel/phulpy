@@ -1,5 +1,6 @@
 from phulpy.output import Output
 
+
 class TestOutput(object):
     def test_out(self):
         Output.out('lala')
