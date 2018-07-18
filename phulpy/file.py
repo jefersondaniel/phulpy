@@ -10,12 +10,15 @@ class File:
         self.__real_path = os.path.realpath(relative_path)
         self.__name = os.path.basename(relative_path)
         if read:
-            self.__content = open(relative_path, 'r').read()
+            self.__read_content()
+
+    def __read_content(self):
+        self.__content = open(self.__relative_path, 'r').read()
 
     @property
     def content(self):
         if '' is self.__content:
-            self.__content = open(self.__relative_path, 'r').read()
+            self.__read_content()
 
         return self.__content
 

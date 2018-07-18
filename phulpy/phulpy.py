@@ -7,12 +7,20 @@ from .source import Source
 from .helpers import mkdir
 
 
+class TaskNotFound(Exception):
+    pass
+
+
 class Phulpy:
-    __tasks__ = {}
+    __tasks = {}
 
     def task(self, fn):
-        self.__tasks__[fn.__name__] = fn
+        self.__tasks[fn.__name__] = fn
         return fn
+
+    @property
+    def tasks(self):
+        return self.__tasks
 
     def src(self, glob_patterns, read=True):
         return Source(glob_patterns, read=read)
@@ -57,7 +65,7 @@ class Phulpy:
 
     def start(self, tasks):
         for task in tasks:
-            if task in self.__tasks__:
+            if task in self.__tasks:
 
                 Output.out(
                     "[{}] Starting task {}".format(
@@ -69,7 +77,7 @@ class Phulpy:
                     )
                 )
 
-                task_fn = self.__tasks__[task]
+                task_fn = self.__tasks[task]
                 start = time()
 
                 if task_fn.__code__.co_argcount:
@@ -88,7 +96,7 @@ class Phulpy:
                     )
                 )
             else:
-                raise Exception('There is no task named {}'.format(task))
+                raise TaskNotFound('There is no task named {}'.format(task))
 
 
 phulpy = Phulpy()
