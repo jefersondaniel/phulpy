@@ -62,6 +62,9 @@ class TestPhulp(object):
         iterator = phulpy.clean()
         iterator(src)
 
+    def test_execute(self):
+        phulpy.execute('/bin/ls ""', quiet=True)
+
     def test_start(self):
         @task
         def with_argument(phulpy):

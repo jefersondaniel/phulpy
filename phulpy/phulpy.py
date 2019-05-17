@@ -5,6 +5,7 @@ from multiprocessing.dummy import Pool as ThreadPool
 from .output import Output
 from .source import Source
 from .helpers import mkdir
+from .command import Command
 
 
 class TaskNotFound(Exception):
@@ -97,6 +98,21 @@ class Phulpy(object):
                 )
             else:
                 raise TaskNotFound('There is no task named {}'.format(task))
+
+    def execute(self, command, cwd=None, env=None, quiet=False, sync=True, on_stdout=None, on_stderr=None, on_finish=None):
+        command = Command(
+            command,
+            cwd,
+            env,
+            quiet,
+            sync,
+            on_stdout,
+            on_stderr,
+            on_finish
+        )
+        command.start()
+
+        return command
 
 
 phulpy = Phulpy()
