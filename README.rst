@@ -28,39 +28,72 @@ Create your ``phulpyfile.py`` (the configuration file, that describes all your t
 
 .. code:: python
 
-   from phulpy import task, Output
+    from phulpy import task, Output
 
-   @task
-   def default(phulpy):
-       def print_file(file):
-           Output.out(Output.colorize(
-               file.relative_path,
-               'green'
-           ))
+    @task
+    def default(phulpy):
+        def print_file(file):
+            Output.out(Output.colorize(
+                file.relative_path,
+                'green'
+            ))
 
-       def print_src_class(src):
-           Output.out(src.__class__.__name__)
+        def print_src_class(src):
+            Output.out(src.__class__.__name__)
 
-       def if_phulpy_file(file):
-           return 'phulpyfile.py' in file.name
+        def if_phulpy_file(file):
+            return 'phulpyfile.py' in file.name
 
-       phulpy.src(['./*'], read=True) \
-           .pipe(phulpy.iterate(print_file)) \
-           .pipe(print_src_class) \
-           .pipe(phulpy.filter(if_phulpy_file)) \
-           .pipe(phulpy.iterate(print_file)) \
-           .pipe(phulpy.dest('./var'))
-
-
-   @task
-   def clean(phulpy):
-       phulpy.src(['./var/*']) \
-           .pipe(phulpy.clean())
+        phulpy.src(['./*'], read=True) \
+            .pipe(phulpy.iterate(print_file)) \
+            .pipe(print_src_class) \
+            .pipe(phulpy.filter(if_phulpy_file)) \
+            .pipe(phulpy.iterate(print_file)) \
+            .pipe(phulpy.dest('./var'))
 
 
-   @task
-   def do_nothing():
-       pass
+    @task
+    def clean(phulpy):
+        phulpy.src(['./var/*']) \
+            .pipe(phulpy.clean())
+
+    @task
+    def exec_1(phulpy):
+        def __on_stdout__(tick, stdin):
+            # Output.out(tick)
+
+            if '[yes]?' in tick:
+                stdin.write('yes\n')
+
+        def __on_stderr__(tick, stdin):
+            # Output.err(tick)
+            pass
+
+        def __on_finish__(sigint, stdout, stderr):
+            pass
+
+        phulpy.exec(
+            'ls -lah',
+            quite=False,  # write on stdout and stdin, default True, needs to be handled
+            sync=False,  # default True
+            on_stdout=__on_stdout__,  # handle stdout
+            on_stderr=__on_stderr__,  # handle stderr
+            on_finish=__on_finish__  # handle sigint
+        )
+
+
+    @task
+    def exec_2(phulpy):
+        # when its is sync return a command with stdout, stderr, and sigint
+        command = phulpy.exec('ls -lah')
+
+        sigint = command.sigint
+        stdout = command.stdout
+        stderr = command.stderr
+
+    @task
+    def do_nothing():
+        pass
 
 Run:
 ''''
