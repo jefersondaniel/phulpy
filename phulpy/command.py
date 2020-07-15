@@ -75,4 +75,4 @@ class Command(object):
 
     def kill(self):
         if self.proc:
-            self.proc.kill()
+            self.proc.terminate()  # avoid [python] <defunct>
