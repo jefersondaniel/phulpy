@@ -72,7 +72,7 @@ Create your ``phulpyfile.py`` (the configuration file, that describes all your t
         def __on_finish__(sigint, stdout, stderr):
             pass
 
-        phulpy.exec(
+        command = phulpy.execute(
             'ls -lah',
             quite=False,  # write on stdout and stdin, default True, needs to be handled
             sync=False,  # default True
@@ -81,11 +81,13 @@ Create your ``phulpyfile.py`` (the configuration file, that describes all your t
             on_finish=__on_finish__  # handle sigint
         )
 
+        command.kill() # force stop command
+
 
     @task
     def exec_2(phulpy):
         # when its is sync return a command with stdout, stderr, and sigint
-        command = phulpy.exec('ls -lah')
+        command = phulpy.execute('ls -lah')
 
         sigint = command.sigint
         stdout = command.stdout

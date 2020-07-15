@@ -72,3 +72,7 @@ class Command(object):
 
             self.proc.wait()
             self.exit_code = self.proc.returncode
+
+    def kill(self):
+        if self.proc:
+            self.proc.kill()
